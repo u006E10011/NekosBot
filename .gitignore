@@ -21,6 +21,9 @@ wheels/
 *.egg
 MANIFEST
 
+# custom
+*image_stats.json
+
 # Virtual environment
 .venv/
 venv/

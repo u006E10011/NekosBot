@@ -45,8 +45,8 @@ readme = """
 
 def caption_image(api: str, tag: str, category: str):
     caption = [
-        f"API: {api.capitalize()}",
-        f"Tag: {tag.capitalize()}",
+        f"API: {str(api).capitalize()}",
+        f"Tag: {str(tag).capitalize()}",
         f"Category: {category.capitalize()}"
     ]
     return "\n".join(caption)
@@ -57,7 +57,7 @@ def commands(api: str, tag: str):
         "/help - информация о боте",
         "/api - выбрать API",
         "/tag - выбрать тег\n",
-        f"Current API: {api.capitalize()}",
-        f"Current tag: {tag.capitalize()}",
+        f"Current API: {str(api).capitalize()}",
+        f"Current tag: {str(tag).capitalize()}",
     ]
     return "\n".join(commands)
