@@ -7,6 +7,8 @@ from aiogram.exceptions import TelegramBadRequest
 
 import app.keyboard as kb
 import app.data as data
+import app.analytics as analytics
+
 
 router = Router()
 user_active_keyboards = {}
@@ -42,6 +44,11 @@ async def cmd_keyboard(message: Message):
     await message.answer(text="Select tag", reply_markup=kb.get_tag(api))
 
 
+@router.message(Command("stats"))
+async def cmd_stats(message: Message):
+    await analytics.get_stats(message)
+
+
 @router.callback_query(F.data.in_(data.api.keys()))
 async def switch_api(callback: CallbackQuery):
     global api, url
@@ -62,6 +69,14 @@ async def send_category_image(message: Message, attempt=1, max_attempts=3):
     try:
         image_url = await get_image_url(message.text)
         if image_url:
+            analytics.update_stats(
+                user_id=message.from_user.id,
+                username=message.from_user.username,
+                first_name=message.from_user.first_name,
+                api=api,
+                tag=tag,
+                category=category
+            )
             await message.answer_photo(image_url, caption=data.caption_image(api, tag, category))
         else:
             await message.answer("Download image error")
