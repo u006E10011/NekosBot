@@ -1,6 +1,6 @@
 # NekosBot bot for Telegram
 
-Многофункциональный бот для поиска аниме-изображений через разные API ([Nekosia](https://api.nekosia.cat/") и [Waifu.im](https://api.waifu.im/))
+Многофункциональный бот для поиска аниме-изображений через разные API ([Nekosia](https://api.nekosia.cat/) и [Waifu.im](https://api.waifu.im/))
 
 Бот позволяет удобно искать изображения по категориям с поддержкой двух API:
 * Nekosia (SFW-контент: аниме-персонажи, арты)

@@ -18,7 +18,7 @@ category = "catgirl"
 @router.message(CommandStart())
 async def cmd_start(message: Message):
     await message.answer(
-        text=data.start,
+        text=data.readme,
         reply_markup= kb.info,
         parse_mode="HTML",
         disable_web_page_preview=True

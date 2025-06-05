@@ -15,6 +15,34 @@ start = """
 В дальнейшем бот будет поддерживать больше API
 """
 
+readme = """
+<b>NekosBot bot for Telegram</b>
+
+Бот отправляет случайный арт из выбранного API, тега, категории
+
+В данный момент бот поддержвиет два API:
+• <b><a href="https://api.nekosia.cat/">Nekosia</a></b> (SFW-контент)
+• <b><a href="https://api.waifu.im/">Waifu.im</a></b> (SFW/NSFW-контент)
+
+Доступные API и теги
+
+<b>Nekosia</b>
+• beastmen - зверолюди
+• character - персонаж
+• features - особенности
+• hair_eye_colors - цвет волос и глаз
+• clothing - одежда
+• accessories - аксессуары
+• other - другое
+
+<b>Waifu.im</b>
+• versatile - универсальный
+• nsfw - (¬‿¬)
+
+Автоматическая подгрузка изображений по выбранному тегу
+Поддержка NSFW-контента (через Waifu.im) с фильтрацией по запросу
+"""
+
 def caption_image(api: str, tag: str, category: str):
     caption = [
         f"API: {api.capitalize()}",
