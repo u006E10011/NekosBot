@@ -1,7 +1,9 @@
 import httpx
+import asyncio
 from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import CommandStart, Command
+from aiogram.exceptions import TelegramBadRequest
 
 import app.keyboard as kb
 import app.data as data
@@ -56,14 +58,23 @@ async def switch_api(callback: CallbackQuery):
     for row in keyboard.keyboard
     for button in row
 ])
-async def send_category_image(message: Message):
-    image_url = await get_image_url(message.text)
+async def send_category_image(message: Message, attempt=1, max_attempts=3):
+    try:
+        image_url = await get_image_url(message.text)
+        if image_url:
+            await message.answer_photo(image_url, caption=data.caption_image(api, tag, category))
+        else:
+            await message.answer("Download image error")
+    except TelegramBadRequest as e:
+        print(f"Download image error (attempt {attempt}): {e}")
+        if attempt < max_attempts:
+            await asyncio.sleep(.2)
+            await send_category_image(message, attempt + 1)
+        else:
+            await message.answer("Не удалось загрузить изображение после нескольких попыток")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
 
-
-    if image_url:
-        await message.answer_photo(image_url, caption=data.caption_image(api, tag, category))
-    else:
-        await message.answer("Download image error")
 
 @router.callback_query(lambda callback: callback.data in kb.get_tag_keyboards(api).keys())
 async def switch_category(callback: CallbackQuery):
