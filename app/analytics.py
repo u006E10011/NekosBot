@@ -1,10 +1,11 @@
 import json
+import os
 from pathlib import Path
 from collections import defaultdict
 from aiogram.types import Message
 
 STATS_FILE = Path("image_stats.json")
-ADMIN = 1497027902
+ADMIN = int(os.getenv("ADMIN"))
 
 async def get_full_stats(message: Message):
     if not image_stats:
