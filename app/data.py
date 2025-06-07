@@ -7,8 +7,8 @@ api = {
 
 start = """
 <b>Бот на данный поддерживает 2 API:</b>
-<a href="https://api.nekosia.cat/">Nekosia</a> - безобидные аниме арты
-<a href="https://api.waifu.im/">Waifu.im</a> - с поддержкой NSFW
+<a href="https://nekosia.cat/documentation">Nekosia</a> - безобидные аниме арты
+<a href="https://waifu.im/docs">Waifu.im</a> - с поддержкой NSFW
 
 С актуальной версией бота можно ознакомиться на <a href="https://github.com/u006E10011/NekosBot/">GitHub</a>. Вы можете скачать и запустить на своём ПК, модифицировать и распространять
 
@@ -21,8 +21,8 @@ readme = """
 Бот отправляет случайный арт из выбранного API, тега, категории
 
 В данный момент бот поддержвиет два API:
-• <b><a href="https://api.nekosia.cat/">Nekosia</a></b> (SFW-контент)
-• <b><a href="https://api.waifu.im/">Waifu.im</a></b> (SFW/NSFW-контент)
+• <b><a href="https://nekosia.cat/documentation">Nekosia</a></b> (SFW-контент)
+• <b><a href="https://waifu.im/docs">Waifu.im</a></b> (SFW/NSFW-контент)
 
 Доступные API и теги
 
@@ -40,7 +40,7 @@ readme = """
 • nsfw - (¬‿¬)
 
 Автоматическая подгрузка изображений по выбранному тегу
-Поддержка NSFW-контента (через Waifu.im) с фильтрацией по запросу
+Поддержка NSFW-контента (через Waifu.im)
 """
 
 def caption_image(api: str, tag: str, category: str):
