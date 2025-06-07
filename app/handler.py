@@ -72,6 +72,16 @@ async def send_category_image(message: Message, state: FSMContext, attempt=1, ma
     api = user_data.get('api')
     tag = user_data.get('tag')
 
+    if not api or not tag:
+        value = analytics.get_current_selection(message.from_user.id)
+        await state.update_data(
+            api=value["api"],
+            tag=value["tag"]
+        )
+        user_data = await state.get_data()
+        api = user_data.get('api')
+        tag = user_data.get('tag')
+
     valid_categories = [
         button.text
         for keyboard in kb.get_tag_keyboards(api).values()
@@ -110,7 +120,6 @@ async def send_category_image(message: Message, state: FSMContext, attempt=1, ma
 
 @router.callback_query()
 async def switch_category(callback: CallbackQuery, state: FSMContext):
-    await callback.message.answer(f"tag: {callback.data}")
     user_data = await state.get_data()
     api = user_data.get('api')
 
